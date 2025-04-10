@@ -48,7 +48,7 @@ export default function Resume() {
               asChild
               className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80 transition-all duration-300"
             >
-              <Link href="#" download>
+              <Link target="blank" href="https://drive.google.com/drive/folders/1hxoiuzL-V7PH4LSogP6THMRtGm14qPC_?usp=drive_link" download>
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </Link>
