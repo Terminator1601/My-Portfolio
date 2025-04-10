@@ -9,40 +9,54 @@ import Header from "./header"
 
 export default function Hero() {
   const [text, setText] = useState("")
+  const [isDeleting, setIsDeleting] = useState(false)
   const [index, setIndex] = useState(0)
   const phrases = ["Backend Developer", "Software Engineer", "Problem Solver", "Tech Enthusiast"]
 
   useEffect(() => {
-    const typingInterval = setInterval(() => {
+    const typingSpeed = 150 // Speed for typing
+    const deletingSpeed = 100 // Speed for deleting
+    const delayBeforeDeleting = 2000 // How long to pause at full phrase
+    const delayBeforeNextPhrase = 1000 // How long to pause before next phrase
+
+    let timer: NodeJS.Timeout
+
+    const handleTyping = () => {
       const currentPhrase = phrases[index]
-
-      if (text.length < currentPhrase.length) {
-        setText(currentPhrase.substring(0, text.length + 1))
+      
+      if (!isDeleting) {
+        // Typing
+        if (text.length < currentPhrase.length) {
+          timer = setTimeout(() => {
+            setText(currentPhrase.slice(0, text.length + 1))
+          }, typingSpeed)
+        } else {
+          // Finished typing, wait before starting to delete
+          timer = setTimeout(() => {
+            setIsDeleting(true)
+          }, delayBeforeDeleting)
+        }
       } else {
-        // Wait a bit before starting to delete
-        setTimeout(() => {
-          clearInterval(typingInterval)
-
-          // Start deleting
-          const deletingInterval = setInterval(() => {
-            if (text.length > 0) {
-              setText(text.substring(0, text.length - 1))
-            } else {
-              clearInterval(deletingInterval)
-              setIndex((prevIndex) => (prevIndex + 1) % phrases.length)
-
-              // Restart typing for the next phrase
-              setTimeout(() => {
-                setText("")
-              }, 500)
-            }
-          }, 50)
-        }, 2000)
+        // Deleting
+        if (text.length > 0) {
+          timer = setTimeout(() => {
+            setText(text.slice(0, -1))
+          }, deletingSpeed)
+        } else {
+          // Finished deleting, move to next phrase
+          setIsDeleting(false)
+          setIndex((prev) => (prev + 1) % phrases.length)
+          timer = setTimeout(() => {
+            // Small delay before starting next phrase
+          }, delayBeforeNextPhrase)
+        }
       }
-    }, 100)
+    }
 
-    return () => clearInterval(typingInterval)
-  }, [text, index, phrases])
+    handleTyping()
+
+    return () => clearTimeout(timer)
+  }, [text, isDeleting, index, phrases])
 
   return (
     <section
