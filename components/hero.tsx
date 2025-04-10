@@ -1,62 +1,67 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
-import Link from "next/link"
-import Header from "./header"
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowDown, Github, Linkedin, Mail, Youtube } from "lucide-react";
+import Link from "next/link";
+import Header from "./header";
 
 export default function Hero() {
-  const [text, setText] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
-  const [index, setIndex] = useState(0)
-  const phrases = ["Backend Developer", "Software Engineer", "Problem Solver", "Tech Enthusiast"]
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [index, setIndex] = useState(0);
+  const phrases = [
+    "Backend Developer",
+    "Software Engineer",
+    "Problem Solver",
+    "Tech Enthusiast",
+  ];
 
   useEffect(() => {
-    const typingSpeed = 150 // Speed for typing
-    const deletingSpeed = 100 // Speed for deleting
-    const delayBeforeDeleting = 2000 // How long to pause at full phrase
-    const delayBeforeNextPhrase = 1000 // How long to pause before next phrase
+    const typingSpeed = 150; // Speed for typing
+    const deletingSpeed = 100; // Speed for deleting
+    const delayBeforeDeleting = 2000; // How long to pause at full phrase
+    const delayBeforeNextPhrase = 1000; // How long to pause before next phrase
 
-    let timer: NodeJS.Timeout
+    let timer: NodeJS.Timeout;
 
     const handleTyping = () => {
-      const currentPhrase = phrases[index]
-      
+      const currentPhrase = phrases[index];
+
       if (!isDeleting) {
         // Typing
         if (text.length < currentPhrase.length) {
           timer = setTimeout(() => {
-            setText(currentPhrase.slice(0, text.length + 1))
-          }, typingSpeed)
+            setText(currentPhrase.slice(0, text.length + 1));
+          }, typingSpeed);
         } else {
           // Finished typing, wait before starting to delete
           timer = setTimeout(() => {
-            setIsDeleting(true)
-          }, delayBeforeDeleting)
+            setIsDeleting(true);
+          }, delayBeforeDeleting);
         }
       } else {
         // Deleting
         if (text.length > 0) {
           timer = setTimeout(() => {
-            setText(text.slice(0, -1))
-          }, deletingSpeed)
+            setText(text.slice(0, -1));
+          }, deletingSpeed);
         } else {
           // Finished deleting, move to next phrase
-          setIsDeleting(false)
-          setIndex((prev) => (prev + 1) % phrases.length)
+          setIsDeleting(false);
+          setIndex((prev) => (prev + 1) % phrases.length);
           timer = setTimeout(() => {
             // Small delay before starting next phrase
-          }, delayBeforeNextPhrase)
+          }, delayBeforeNextPhrase);
         }
       }
-    }
+    };
 
-    handleTyping()
+    handleTyping();
 
-    return () => clearTimeout(timer)
-  }, [text, isDeleting, index, phrases])
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, index, phrases]);
 
   return (
     <section
@@ -85,7 +90,8 @@ export default function Hero() {
             <span className="animate-blink">|</span>
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Passionate about building robust backend systems and solving complex problems with elegant solutions.
+            Engineering Scalable Backends, Streamlining DevOps Pipelines, and
+            Powering Intelligence with Machine Learning & Deep Learning.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -116,7 +122,12 @@ export default function Hero() {
               asChild
               className="rounded-full hover:bg-primary/10 transition-all duration-300"
             >
-              <Link href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <Link
+                href="https://github.com/Terminator1601"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
                 <Github className="h-5 w-5" />
               </Link>
             </Button>
@@ -126,8 +137,29 @@ export default function Hero() {
               asChild
               className="rounded-full hover:bg-primary/10 transition-all duration-300"
             >
-              <Link href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <Link
+                href="https://www.linkedin.com/in/rishi-sharma-0b340623b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
                 <Linkedin className="h-5 w-5" />
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="rounded-full hover:bg-primary/10 transition-all duration-300"
+            >
+              <Link
+                href="https://www.youtube.com/@CodePurann"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Youtube"
+              >
+                <Youtube className="h-5 w-5" />
               </Link>
             </Button>
             <Button
@@ -161,5 +193,5 @@ export default function Hero() {
         </Button>
       </motion.div>
     </section>
-  )
+  );
 }

@@ -1,12 +1,18 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Projects() {
   const projects = [
@@ -14,10 +20,10 @@ export default function Projects() {
       title: "Ask Your Dost",
       description:
         "A business directory platform connecting users with local and international businesses, increasing engagement by 40% and reducing service search time by 20%.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/AYD.png?height=400&width=600",
       technologies: ["TypeScript", "JavaScript", "React", "Firebase"],
-      link: "https://example.com",
-      github: "https://github.com",
+      link: "https://ask-your-dost.vercel.app/",
+      github: "https://github.com/Terminator1601/AskYourDost",
       achievements: [
         "Created a platform connecting users with local and international businesses, increasing engagement by 40% and reducing service search time by 20%.",
         "Integrated Firebase to manage over 10,000 entries of users and service providers, enhancing data retrieval speed by 30%.",
@@ -27,8 +33,9 @@ export default function Projects() {
     },
     {
       title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with Next.js, Tailwind CSS, and Framer Motion.",
-      image: "/placeholder.svg?height=400&width=600",
+      description:
+        "A modern, responsive portfolio website built with Next.js, Tailwind CSS, and Framer Motion.",
+      image: "/portfolio.png?height=400&width=600",
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
       link: "https://example.com",
       github: "https://github.com",
@@ -39,10 +46,59 @@ export default function Projects() {
         "Built a contact form with email integration.",
       ],
     },
-  ]
+    {
+      title: "News Scrapper",
+      description:
+        "A web-based tool that scrapes and displays the latest news articles using custom Python scripts, enabling real-time updates and data extraction from multiple news sources.",
+      image: "/news-scrapper.png?height=400&width=600",
+      technologies: [
+        "Python",
+        "BeautifulSoup",
+        "Flask",
+        "Requests",
+        "HTML",
+        "CSS",
+      ],
+      link: "",
+      github: "https://github.com/Terminator1601/news-scrapper",
+      achievements: [
+        "Built a Python-based web scraper to extract real-time news headlines and articles from multiple sources using BeautifulSoup and Requests.",
+        "Developed a clean Flask-powered UI to display scraped content dynamically with smooth routing and minimal latency.",
+        "Implemented modular architecture to allow easy addition of new news sources and content types.",
+        "Optimized scraping logic to reduce response time by 40% and ensure reliable data extraction despite frequent website structure changes.",
+      ],
+    },
+
+    {
+      title: "TVS Credits - Risk Management",
+      description:
+        "A machine learning-powered web application designed to predict loan approval outcomes and assess risk levels based on customer profiles, improving financial decision-making efficiency.",
+      image: "/tvs-risk-management.png?height=400&width=600",
+      technologies: [
+        "Python",
+        "Flask",
+        "Pandas",
+        "Scikit-learn",
+        "HTML",
+        "CSS",
+        "JavaScript",
+      ],
+      link: "",
+      github: "https://github.com/Terminator1601/TVS_Credits-Risk_Management",
+      achievements: [
+        "Developed a risk assessment tool using logistic regression and decision tree models to predict loan approval status with high accuracy.",
+        "Integrated a Flask backend with a user-friendly frontend to allow financial institutions to input customer data and get real-time risk insights.",
+        "Engineered robust data preprocessing pipelines using Pandas to handle missing values, categorical encoding, and feature scaling.",
+        "Improved prediction accuracy through iterative model tuning and cross-validation, aiding more informed loan approvals.",
+      ],
+    },
+  ];
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-muted/10 to-background">
+    <section
+      id="projects"
+      className="py-20 bg-gradient-to-b from-muted/10 to-background"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,15 +107,18 @@ export default function Projects() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <Badge variant="outline" className="mb-2 px-4 py-1 border-primary/20 bg-primary/5">
+          <Badge
+            variant="outline"
+            className="mb-2 px-4 py-1 border-primary/20 bg-primary/5"
+          >
             Projects
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
             My Recent Work
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Here are some of the projects I&apos;ve worked on. Each project has helped me grow as a developer and solve
-            real-world problems.
+            Here are some of the projects I&apos;ve worked on. Each project has
+            helped me grow as a developer and solve real-world problems.
           </p>
         </motion.div>
 
@@ -89,13 +148,25 @@ export default function Projects() {
                       asChild
                       className="mr-2 text-white border-white hover:bg-white/20"
                     >
-                      <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Link
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="mr-2 h-4 w-4" />
                         Code
                       </Link>
                     </Button>
-                    <Button size="sm" asChild className="bg-primary hover:bg-primary/90">
-                      <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      size="sm"
+                      asChild
+                      className="bg-primary hover:bg-primary/90"
+                    >
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Demo
                       </Link>
@@ -103,17 +174,25 @@ export default function Projects() {
                   </div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-primary/90">{project.title}</CardTitle>
+                  <CardTitle className="text-primary/90">
+                    {project.title}
+                  </CardTitle>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {project.technologies.map((tech, idx) => (
-                      <Badge key={idx} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
+                      <Badge
+                        key={idx}
+                        variant="secondary"
+                        className="bg-primary/10 text-primary hover:bg-primary/20"
+                      >
                         {tech}
                       </Badge>
                     ))}
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
+                  <p className="text-muted-foreground mb-4">
+                    {project.description}
+                  </p>
                   <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
                     {project.achievements.map((achievement, idx) => (
                       <li key={idx}>{achievement}</li>
@@ -121,8 +200,17 @@ export default function Projects() {
                   </ul>
                 </CardContent>
                 <CardFooter className="flex justify-between">
-                  <Button variant="outline" size="sm" asChild className="border-primary/20 hover:bg-primary/5">
-                    <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    asChild
+                    className="border-primary/20 hover:bg-primary/5"
+                  >
+                    <Link
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Github className="mr-2 h-4 w-4" />
                       Code
                     </Link>
@@ -132,7 +220,11 @@ export default function Projects() {
                     asChild
                     className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary/80"
                   >
-                    <Link href={project.link} target="_blank" rel="noopener noreferrer">
+                    <Link
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Live Demo
                     </Link>
@@ -144,5 +236,5 @@ export default function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }
